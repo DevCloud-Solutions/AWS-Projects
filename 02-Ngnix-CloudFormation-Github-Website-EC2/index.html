@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Netflix</title>
+    <link
+      rel="shortcut icon"
+      href="./Netflix Favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <img id="image" src="./Netflix_Logo_PMS.png" alt="Netflix">
+      </div>
+      <div style="display: flex">
+        <div>
+          <select name="Dil" id="Dil">
+            <option value="tr">Türkçe</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <a id="üyelik" target="_blank"
+        style="text-decoration: none; color: white"
+          href="https://www.netflix.com/tr-en/login"> Oturum Aç
+        </a>
+      </div>
+    </div>
+    <div class="paragraf">
+      <h1 id="pageTitle" style="font-size: 50px">Herkes burada!</h1>
+      <p id="contentParagraph" style="font-size: 27px">
+        Favori oyuncunuz, en yakın arkadaşınız, karşı komşunuz. Tabii filmin,
+        dizinin ve belgeselin âlâsı da.
+        <br /> <br />
+        <p> 
+          <span id="altparagraf" style="font-size: 22px">İzlemeye hazır mısınız? Üye olmak ya da hesabınıza tekrar ulaşmak
+          için tek yapmanız gereken e-posta adresinizi girmek.</span>
+        </p>
+      </p>
+    </div>
+    <div class="search-container">
+      <input type="text" id="search-box" placeholder="E-posta adresi">
+      <button id="search-button">Başlayın > </button>
+  </div>
+  <script src="./script.js"></script>
+  </body>
+</html>

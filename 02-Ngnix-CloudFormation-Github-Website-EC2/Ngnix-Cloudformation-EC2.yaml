@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: |
+  Netflix website front page work  is a static website application deployed with Apache Web Server on AWS Elastic Compute Cloud (EC2) Instance using AWS Cloudformation Service.
+Parameters:
+  keyPair:
+    Description: secret
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: firstkey
+
+Resources:
+  myWebSer:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-079db87dc4c10ac91
+
+      InstanceType: t2.micro
+
+      KeyName: !Ref keyPair
+
+      SecurityGroupIds:
+        - !Ref mySecGrp
+
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}
+
+      UserData: !Base64 |
+        #!/bin/bash
+
+        # DNF'yi güncelle
+        dnf update -y
+
+        # Nginx'i yükle
+        dnf install nginx -y
+
+        # Nginx servisini başlat
+        systemctl start nginx
+
+        # Web sayfasının bulunduğu dizine geç
+        cd /usr/share/nginx/html
+
+        # Dosya ve dizin izinlerini düzenle
+        chmod -R 755 /usr/share/nginx/html
+
+        # Önceki index.html dosyasını sil
+        rm -f index.html
+
+        # GitHub reposundan dosyaları indir
+        wget https://raw.githubusercontent.com/ahmettgg/AWS_My_Project/main/02-Ngnix-CloudFormation-Github-Website-EC2/index.html
+        wget https://raw.githubusercontent.com/ahmettgg/AWS_My_Project/main/02-Ngnix-CloudFormation-Github-Website-EC2/script.js
+        wget https://raw.githubusercontent.com/ahmettgg/AWS_My_Project/main/02-Ngnix-CloudFormation-Github-Website-EC2/style.css
+        wget https://raw.githubusercontent.com/ahmettgg/AWS_My_Project/main/02-Ngnix-CloudFormation-Github-Website-EC2/Netflix%20Favicon.png
+        wget https://raw.githubusercontent.com/ahmettgg/AWS_My_Project/main/02-Ngnix-CloudFormation-Github-Website-EC2/Netflix_Logo_PMS.png
+        wget https://raw.githubusercontent.com/ahmettgg/AWS_My_Project/main/02-Ngnix-CloudFormation-Github-Website-EC2/netflix-arka%20resim.jpg
+
+        # Nginx servisini yeniden başlat
+        systemctl restart nginx
+
+        # Nginx servisini başlangıçta otomatik olarak başlat
+        systemctl enable nginx
+
+  mySecGrp:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: accessible via web browser and terminal from anywhere # Required
+      GroupName: SSH and HTTP
+
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+Outputs:
+  LogicalID:
+    Description: URL of Website
+    Value: !Sub
+      - http://${PublicDNS}
+      - PublicDNS: !GetAtt myWebSer.PublicDnsName

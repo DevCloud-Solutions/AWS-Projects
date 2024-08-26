@@ -1,0 +1,85 @@
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.542), rgb(0, 0, 0)),
+    url(./netflix-arka\ resim.jpg);
+  background-size: cover;
+  /* background-position: center; */
+  height: 100vh;
+  font-family: sans-serif;
+  color: white;
+  text-align: center;
+}
+.container {
+  color: white;
+  display: flex;
+  margin-left: 150px;
+  padding: px;
+}
+#image {
+  width: 180px;
+}
+#Dil {
+  margin-left: 650px;
+  margin-right: 15px;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-top: 8px;
+  padding-right: 30px;
+  padding-bottom: 5px;
+  margin-top: 15px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+}
+#üyelik {
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  height: 5px;
+  color: white;
+  background-color: red;
+  width: 80px;
+  text-align: center;
+  margin-top: 15px;
+  display: flex;
+}
+.paragraf {
+  margin: 80px;
+}
+#altparagraf {
+  margin: 40px;
+}
+.search-container {
+  text-align: center;
+  margin: 100px auto;
+}
+
+#search-box {
+  padding: 20px;
+  width: 350px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  color: white;
+}
+
+#search-button {
+  padding: 15px 35px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#search-button:hover {
+  background-color: #cb2222;
+}
+#üyelik:hover {
+  background-color: #cb2222;
+}
